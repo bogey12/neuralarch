@@ -1,0 +1,18 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import mne
+
+dat = pd.read_csv('data/test1.csv')
+
+plt.plot(dat["time"],dat["TP9"])
+plt.show()
+
+# Initialize an info structure
+info = mne.create_info(
+    ch_names=['MEG1', 'MEG2', 'EEG1', 'EEG2', 'EOG'],
+    ch_types=['grad', 'grad', 'eeg', 'eeg', 'eog'],
+    sfreq=100
+)
+
+custom_raw = mne.io.RawArray(dat, info)
+print(custom_raw)
